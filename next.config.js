@@ -6,29 +6,16 @@ const nextConfig = {
 
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.dummyjson.com",
-      },
-      {
-        protocol: "https",
-        hostname: "i.dummyjson.com",
-      },
-      {
-        protocol: "https",
-        hostname: "dummyjson.com",
-      },
+      { protocol: "https", hostname: "cdn.dummyjson.com" },
+      { protocol: "https", hostname: "i.dummyjson.com" },
+      { protocol: "https", hostname: "dummyjson.com" },
     ],
   },
 
-  // Force Next.js to use Webpack instead of Turbopack
-  webpack: (config) => {
-    config.devtool = false;
-    return config;
-  },
+  // REQUIRED: Prevent Vercel from erroring
+  turbopack: {},
 
-  // Tell Vercel to NOT use Turbopack
-  turbopack: false,
+  // DO NOT USE WEBPACK HERE — REMOVE IT COMPLETELY
 };
 
-module.exports = nextConfig;
+export default nextConfig;
