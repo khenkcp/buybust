@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: true,
+    serverActions: {},
   },
 
   images: {
@@ -12,10 +12,14 @@ const nextConfig = {
     ],
   },
 
-  // REQUIRED: Prevent Vercel from erroring
-  turbopack: {},
+  // 🚀 Disable Turbopack completely
+  // Force Next.js to use Webpack instead (compatible with your structure)
+  webpack: (config) => {
+    return config;
+  },
 
-  // DO NOT USE WEBPACK HERE — REMOVE IT COMPLETELY
+  // Tell Next.js NOT to use Turbopack
+  turbo: false,
 };
 
 export default nextConfig;
