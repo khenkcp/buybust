@@ -12,14 +12,8 @@ const nextConfig = {
     ],
   },
 
-  // 🚀 Disable Turbopack completely
-  // Force Next.js to use Webpack instead (compatible with your structure)
-  webpack: (config) => {
-    return config;
-  },
-
-  // Tell Next.js NOT to use Turbopack
-  turbo: false,
+  // ✔ REQUIRED: Silence Turbopack error
+  turbopack: {},
 };
 
 export default nextConfig;
