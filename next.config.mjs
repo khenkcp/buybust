@@ -1,17 +1,29 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-  productionBrowserSourceMaps: false,
-
-  // Disable Turbopack source maps (THIS FIXES THE WINDOWS BUG)
-  turbopack: {
-    // disable all sourcemaps
-    resolve: {
-      sourceMaps: false,
-    },
+  experimental: {
+    serverActions: true,
   },
 
-  // Force Next.js to STOP trying to use Webpack source maps
-  webpack(config) {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.dummyjson.com",       // main CDN
+      },
+      {
+        protocol: "https",
+        hostname: "i.dummyjson.com",         // alternate CDN
+      },
+      {
+        protocol: "https",
+        hostname: "dummyjson.com",           // direct images
+      },
+    ],
+  },
+
+  webpack: (config) => {
     config.devtool = false;
     return config;
   },
